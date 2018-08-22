@@ -18,7 +18,8 @@ _salticam_menu = (
 
 _rss_menu = (
     ('Bias Levels', 'bias', 'dq_poc.content.rss.bias'),
-    ('Throughput', 'throughput', 'dq_poc.content.rss.throughput')
+    ('Throughput', 'throughput', 'dq_poc.content.rss.throughput'),
+    ('Straylight', 'straylight', 'dq_poc.content.rss.straylight')
 )
 
 # primary menu
