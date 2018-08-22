@@ -22,9 +22,12 @@
     <div class="columns">
         <aside class="column menu is-narrow">
             <ul class="menu-list">
-                <li><a href="/">Bias</a></li>
-                <li><a href="/">Throughput</a></li>
-                <li><a class="is-active" href="/">Temperature</a></li>
+                {% for item in secondary_menu %}
+                    <a {% if item[1] == secondary_menu_item[1] %}class="is-active"{% endif %}
+                       href="/dq{{ primary_menu_item[1] }}/{{ item[1] }}">
+                        {{ item[0] }}
+                    </a>
+                {% endfor %}
             </ul>
         </aside>
         <div class="column">

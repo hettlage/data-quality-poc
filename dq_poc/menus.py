@@ -49,5 +49,21 @@ def primary_menu_item(url):
     return menu_item
 
 
-def secondary_menu(primary_menu_item):
-    pass
+def secondary_menu(url):
+    return primary_menu_item(url)[2]
+
+
+def secondary_menu_item(url):
+    menu = secondary_menu(url)
+
+    slugs = url.split('/')
+    if len(slugs) < 2 or not slugs[1]:
+        return menu[0]
+    slug = slugs[0]
+
+    menu_item = next(filter(lambda item: item[1] == slug, _primary_menu), None)
+
+    if menu_item is None:
+        raise NotFoundException('The requested primary menu item does not exist')
+
+    return menu_item
