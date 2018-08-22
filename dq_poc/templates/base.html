@@ -4,20 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SALT Data Quality</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 <body>
 <div class="container">
-    <nav class="navbar">
-        <div class="navbar-brand">
-            {% for item in primary_menu %}
-                <a class="navbar-item {% if item[1] == primary_menu_item[1] %}is-active{% endif %}"
-                   href="/dq/{{ item[1] }}">
-                    {{ item[0] }}
-                </a>
-            {% endfor %}
-        </div>
-    </nav>
+    {% block page_content %}{% endblock %}
 </div>
+
 </body>
 </html>
