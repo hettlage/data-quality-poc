@@ -6,4 +6,13 @@
    margin-top: 10px;
 }
 
+#data-quality-description {
+    margin: 10px 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
+    background-color: lightyellow;
+}
+
 
