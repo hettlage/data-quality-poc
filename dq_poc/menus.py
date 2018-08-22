@@ -36,7 +36,11 @@ def primary_menu():
 
 
 def primary_menu_item(url):
-    slug = url.split('/')[0]
+    slugs = url.split('/')
+    if len(slugs) == 0 or not slugs[0]:
+        return _primary_menu[0]
+    slug = slugs[0]
+
     menu_item = next(filter(lambda item: item[1] == slug, _primary_menu), None)
 
     if menu_item is None:
