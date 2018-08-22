@@ -3,5 +3,11 @@
 {% block page_content %}
     <h1 class="title">Oh dear, this content does not seem to exist... :-(</h1>
 
+    {% if message %}
+        <div>
+            {{ message }}
+        </div>
+    {% endif %}
+
     <a href="/">Home</a>
 {% endblock %}
