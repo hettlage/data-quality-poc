@@ -2,36 +2,59 @@
 Data Quality Proof of Concept
 =============================
 
+Adding a new page
+-----------------
 
-.. image:: https://img.shields.io/pypi/v/dq_poc.svg
-        :target: https://pypi.python.org/pypi/dq_poc
+Adding a new page to the data quality site is a two-step process.
 
-.. image:: https://img.shields.io/travis/hettlage/dq_poc.svg
-        :target: https://travis-ci.org/hettlage/dq_poc
+1. Create the menu item.
+2. Create a Python module with the actual page content.
 
-.. image:: https://readthedocs.org/projects/dq-poc/badge/?version=latest
-        :target: https://dq-poc.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
+We'll explain these steps by means of a simple example, creating a page for monitoring one of SALT's most important components - the coffee machine.
 
+Open the file :file:`dq_poc/menus.py`. It defines a variable called ``_primary_menu``. Its entries are used to generate the main menu. As the coffee machine is not part of any instrument, it is reasonable to assume that its status page should fall under 'Telescope', and there is indeed a menu item for this.
 
+.. code-block:: python
 
+  _primary_menu = (
+      ('Telescope', 'telescope', _telescope_menu),
+      ...
+  )
 
-Proof of concept for the data quality site.
+The third entry in the tuple, ``_telescope_menu`` is the secondary menu shown when the 'Telescope' item is selected from the main menu. It looks as follows.
 
+.. code-block:: python
 
-* Free software: MIT license
-* Documentation: https://dq-poc.readthedocs.io.
+  _telescope_menu = (
+      ('Weather', 'weather', 'dq_poc.content.telescope.weather'),
+      ('Seeing', 'seeing', 'dq_poc.content.telescope.seeing')
+  )
 
+Let's add our own entry.
 
-Features
---------
+.. code-block:: python
 
-* TODO
+  _telescope_menu = (
+      ('Weather', 'weather', 'dq_poc.content.telescope.weather'),
+      ('Seeing', 'seeing', 'dq_poc.content.telescope.seeing'),
+      ('Coffee Machine', 'coffee', 'dq_poc.content.telescope.coffee')
+  )
 
-Credits
--------
+If you now open the site in your browser and select `Telescope` from the main menu, 
+you should see the `Coffee Machine` option in the secondary menu. But if you click on it, you will be greeted by an error co plaining about a missing module.
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+To fix that, create a file :file:`dq_poc/content/telescope/coffee.py`. The file path is determined by the third item in the tuple we've added to the secondary menu (``'dq_poc.content.telescope.coffee'``, that is); all dots were replaced by slashes and ``.py`` was appended.
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+The module for our page content defines an (optional) title, the content and a description. These are made available in form of variables ``title``, ``content`` and ``description`` in the module. So we add the following to our (empty) :file:`coffee.py` file.
+
+.. code-block:: python
+  
+  title = 'Coffee Machine Uptime'
+
+  content = '<h2>The coffee machine is working!</h2>'
+
+  description = 'Availability of the coffee machine. The availability of the machine itself as well as the supply of coffee beans are measured.'
+
+If you don't provide a title, the text of the menu item will be used instead.
+
+Save the file and go to ``/dq/telescope/content/coffee`` in your browser. Voilà, you see your shiny new page for ensuring quality control for the coffee machine.

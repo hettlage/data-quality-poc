@@ -4,48 +4,39 @@
 Installation
 ============
 
+In order to develop code for the data quality proof of concept site on your own machine, first create a directory (:file:`data_quality`, say) and change to it.
 
-Stable release
---------------
+.. code-block:: bash
+  
+  mkdir data_quality
+  cd data_quality
 
-To install Data Quality Proof of Concept, run this command in your terminal:
+Create a virtual environment (this is optional, but highly recommended), and activate it.
 
-.. code-block:: console
+.. code-block:: bash
+  
+  python3 -mvenv venv
+  source venv/bin/activate
 
-    $ pip install dq_poc
+Download the code from `https://github.com/hettlage/data-quality-poc <https://github.com/hettlage/data-quality-poc>`_ and change to the created directory.
 
-This is the preferred method to install Data Quality Proof of Concept, as it will always install the most recent stable release.
+.. code-block:: bash
+  
+  git clone https://github.com/hettlage/data-quality-poc.git
+  cd data-quality-poc
 
-If you don't have `pip`_ installed, this `Python installation guide`_ can guide
-you through the process.
+Install the site with :command:`pip`. Note that you should include the ``-e`` flag, so that your updates to the code take effect without you having to re-install the package.
 
-.. _pip: https://pip.pypa.io
-.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
+.. code-block:: bash
+  
+  pip install -e .
 
+You can now start the website with the :command:`flask` command.
 
-From sources
-------------
+.. code-block:: bash
+  
+  export FLASK_APP=dq_poc/dq_poc.py
+  export FLASK_DEBUG=1
+  flask run
 
-The sources for Data Quality Proof of Concept can be downloaded from the `Github repo`_.
-
-You can either clone the public repository:
-
-.. code-block:: console
-
-    $ git clone git://github.com/hettlage/dq_poc
-
-Or download the `tarball`_:
-
-.. code-block:: console
-
-    $ curl  -OL https://github.com/hettlage/dq_poc/tarball/master
-
-Once you have a copy of the source, you can install it with:
-
-.. code-block:: console
-
-    $ python setup.py install
-
-
-.. _Github repo: https://github.com/hettlage/dq_poc
-.. _tarball: https://github.com/hettlage/dq_poc/tarball/master
+The server thus started can be terminated with ``Ctrl-C``.
