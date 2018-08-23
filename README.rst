@@ -2,6 +2,11 @@
 Data Quality Proof of Concept
 =============================
 
+Installation
+------------
+
+See the :ref:`installation instructions <installation>` instructions if you want to develop code for the site on your own machine.
+
 Adding a new page
 -----------------
 

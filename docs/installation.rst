@@ -1,5 +1,7 @@
 .. highlight:: shell
 
+.. _installation:
+
 ============
 Installation
 ============
@@ -39,4 +41,4 @@ You can now start the website with the :command:`flask` command.
   export FLASK_DEBUG=1
   flask run
 
-The server thus started can be terminated with ``Ctrl-C``.
+Point your browser to `http://127.0.0.1:5000/ <http://127.0.0.1:5000/>`_ in order view the site. The Flask server can be terminated with ``Ctrl-C``.
