@@ -8,7 +8,8 @@ from dq_poc.errors import NotFoundException
 
 _telescope_menu = (
     ('Weather', 'weather', 'dq_poc.content.telescope.weather'),
-    ('Seeing', 'seeing', 'dq_poc.content.telescope.seeing')
+    ('Seeing', 'seeing', 'dq_poc.content.telescope.seeing'),
+    ('Coffee', 'coffee', 'dq_poc.content.telescope.coffee')
 )
 
 _salticam_menu = (
